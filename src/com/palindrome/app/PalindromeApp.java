@@ -15,20 +15,28 @@ public class PalindromeApp {
         System.out.print("Enter a word: ");
         String word = sc.nextLine();
 
-        String reversed = "";
+        char[] arr = word.toCharArray();
 
-        for(int i = word.length()-1; i >= 0; i--)
+        boolean isPalindrome = true;
+
+        int start = 0;
+        int end = arr.length - 1;
+
+        while(start < end)
         {
-            reversed = reversed + word.charAt(i);
+            if(arr[start] != arr[end])
+            {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
         }
 
-        if(word.equalsIgnoreCase(reversed))        {
+        if(isPalindrome)
             System.out.println(word + " is Palindrome");
-        }
         else
-        {
             System.out.println(word + " is NOT Palindrome");
-        }
 
         sc.close();
     }
