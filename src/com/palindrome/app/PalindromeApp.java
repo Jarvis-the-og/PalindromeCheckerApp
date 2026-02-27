@@ -1,49 +1,33 @@
 package com.palindrome.app;
 
-import java.util.Scanner;
-import java.util.Stack;
-import java.util.Queue;
-import java.util.LinkedList;
+import java.util.*;
 
 public class PalindromeApp {
 
     public static void main(String[] args) {
 
-        System.out.println("================================");
-        System.out.println(" PALINDROME CHECKER APP ");
-        System.out.println("================================");
-
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter a word: ");
+        System.out.print("Enter word: ");
         String word = sc.nextLine();
 
-        Stack<Character> stack = new Stack<>();
-        Queue<Character> queue = new LinkedList<>();
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // Insert into Stack and Queue
-        for(int i = 0; i < word.length(); i++)
+        for(char c : word.toCharArray())
+            deque.add(c);
+
+        boolean palindrome = true;
+
+        while(deque.size() > 1)
         {
-            stack.push(word.charAt(i));
-            queue.add(word.charAt(i));
-        }
-
-        boolean isPalindrome = true;
-
-        // Compare Stack and Queue
-        while(!stack.isEmpty())
-        {
-            if(stack.pop() != queue.remove())
+            if(deque.removeFirst() != deque.removeLast())
             {
-                isPalindrome = false;
+                palindrome = false;
                 break;
             }
         }
 
-        if(isPalindrome)
-            System.out.println(word + " is Palindrome");
-        else
-            System.out.println(word + " is NOT Palindrome");
+        System.out.println(palindrome ? "Palindrome" : "Not Palindrome");
 
         sc.close();
     }
