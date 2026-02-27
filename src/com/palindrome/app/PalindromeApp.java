@@ -22,8 +22,7 @@ public class PalindromeApp {
             reversed = reversed + word.charAt(i);
         }
 
-        if(word.equals(reversed))
-        {
+        if(word.equalsIgnoreCase(reversed))        {
             System.out.println(word + " is Palindrome");
         }
         else
