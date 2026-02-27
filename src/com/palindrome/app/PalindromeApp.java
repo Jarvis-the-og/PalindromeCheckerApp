@@ -2,6 +2,8 @@ package com.palindrome.app;
 
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class PalindromeApp {
 
@@ -17,19 +19,21 @@ public class PalindromeApp {
         String word = sc.nextLine();
 
         Stack<Character> stack = new Stack<>();
+        Queue<Character> queue = new LinkedList<>();
 
-        // Push characters into stack
+        // Insert into Stack and Queue
         for(int i = 0; i < word.length(); i++)
         {
             stack.push(word.charAt(i));
+            queue.add(word.charAt(i));
         }
 
         boolean isPalindrome = true;
 
-        // Pop and compare
-        for(int i = 0; i < word.length(); i++)
+        // Compare Stack and Queue
+        while(!stack.isEmpty())
         {
-            if(word.charAt(i) != stack.pop())
+            if(stack.pop() != queue.remove())
             {
                 isPalindrome = false;
                 break;
