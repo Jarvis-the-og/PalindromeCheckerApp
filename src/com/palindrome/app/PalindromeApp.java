@@ -1,5 +1,7 @@
 package com.palindrome.app;
 
+import java.util.Scanner;
+
 public class PalindromeApp {
 
     public static void main(String[] args) {
@@ -8,7 +10,10 @@ public class PalindromeApp {
         System.out.println(" PALINDROME CHECKER APP ");
         System.out.println("================================");
 
-        String word = "madam";
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a word: ");
+        String word = sc.nextLine();
 
         String reversed = "";
 
@@ -26,5 +31,6 @@ public class PalindromeApp {
             System.out.println(word + " is NOT Palindrome");
         }
 
+        sc.close();
     }
 }
