@@ -1,6 +1,7 @@
 package com.palindrome.app;
 
 import java.util.Scanner;
+import java.util.Stack;
 
 public class PalindromeApp {
 
@@ -15,22 +16,24 @@ public class PalindromeApp {
         System.out.print("Enter a word: ");
         String word = sc.nextLine();
 
-        char[] arr = word.toCharArray();
+        Stack<Character> stack = new Stack<>();
+
+        // Push characters into stack
+        for(int i = 0; i < word.length(); i++)
+        {
+            stack.push(word.charAt(i));
+        }
 
         boolean isPalindrome = true;
 
-        int start = 0;
-        int end = arr.length - 1;
-
-        while(start < end)
+        // Pop and compare
+        for(int i = 0; i < word.length(); i++)
         {
-            if(arr[start] != arr[end])
+            if(word.charAt(i) != stack.pop())
             {
                 isPalindrome = false;
                 break;
             }
-            start++;
-            end--;
         }
 
         if(isPalindrome)
