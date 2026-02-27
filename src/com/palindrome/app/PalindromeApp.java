@@ -1,34 +1,52 @@
 package com.palindrome.app;
 
-import java.util.Scanner;
-
 public class PalindromeApp {
+
+    // Reverse String Method
+    static boolean reverseMethod(String word)
+    {
+        String reversed = "";
+
+        for(int i = word.length()-1; i >= 0; i--)
+            reversed += word.charAt(i);
+
+        return word.equals(reversed);
+    }
+
+    // Character Array Method
+    static boolean arrayMethod(String word)
+    {
+        char[] arr = word.toCharArray();
+
+        int start = 0;
+        int end = arr.length - 1;
+
+        while(start < end)
+        {
+            if(arr[start] != arr[end])
+                return false;
+
+            start++;
+            end--;
+        }
+
+        return true;
+    }
 
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        String word = "racecar";
 
-        System.out.print("Enter word: ");
-        String word = sc.nextLine();
+        long start1 = System.nanoTime();
+        reverseMethod(word);
+        long end1 = System.nanoTime();
 
-        System.out.println("Choose Strategy:");
-        System.out.println("1 - Stack Strategy");
-        System.out.println("2 - Deque Strategy");
+        long start2 = System.nanoTime();
+        arrayMethod(word);
+        long end2 = System.nanoTime();
 
-        int choice = sc.nextInt();
+        System.out.println("Reverse Method Time: " + (end1 - start1));
+        System.out.println("Array Method Time: " + (end2 - start2));
 
-        PalindromeStrategy strategy;
-
-        if(choice == 1)
-            strategy = new StackStrategy();
-        else
-            strategy = new DequeStrategy();
-
-        if(strategy.isPalindrome(word))
-            System.out.println("Palindrome");
-        else
-            System.out.println("Not Palindrome");
-
-        sc.close();
     }
 }
