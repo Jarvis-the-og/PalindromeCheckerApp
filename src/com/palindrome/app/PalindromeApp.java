@@ -11,9 +11,20 @@ public class PalindromeApp {
         System.out.print("Enter word: ");
         String word = sc.nextLine();
 
-        PalindromeService service = new PalindromeService();
+        System.out.println("Choose Strategy:");
+        System.out.println("1 - Stack Strategy");
+        System.out.println("2 - Deque Strategy");
 
-        if(service.isPalindrome(word))
+        int choice = sc.nextInt();
+
+        PalindromeStrategy strategy;
+
+        if(choice == 1)
+            strategy = new StackStrategy();
+        else
+            strategy = new DequeStrategy();
+
+        if(strategy.isPalindrome(word))
             System.out.println("Palindrome");
         else
             System.out.println("Not Palindrome");
