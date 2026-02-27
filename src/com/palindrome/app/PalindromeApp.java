@@ -11,14 +11,12 @@ public class PalindromeApp {
         System.out.print("Enter word: ");
         String word = sc.nextLine();
 
-        word = word.replaceAll(" ","").toLowerCase();
+        PalindromeService service = new PalindromeService();
 
-        String rev="";
-
-        for(int i=word.length()-1;i>=0;i--)
-            rev+=word.charAt(i);
-
-        System.out.println(word.equals(rev) ? "Palindrome":"Not Palindrome");
+        if(service.isPalindrome(word))
+            System.out.println("Palindrome");
+        else
+            System.out.println("Not Palindrome");
 
         sc.close();
     }
